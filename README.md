@@ -4,6 +4,12 @@ This is a binding of the IPQuery API for Lua users.
 
 Disclaimer: I am not affiliated with the IPQuery project! I just noticed the absence of a Lua library and decided to create one. Therefore, I do not take any responsibility for the API's functionality, performance, or any issues related to it, except in cases where the issue is caused by this Lua script itself!
 
+You can install it using LuaRocks: 
+
+```sh
+$ luarocks install ipapi-lua
+```
+
 Example:
 
 ```lua
