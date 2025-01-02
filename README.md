@@ -10,19 +10,19 @@ You can install it using LuaRocks:
 $ luarocks install ipapi-lua
 ```
 
+The `query_ip` function has two paramters `ìp` and `format`, if provided, it returns a string instead of a table. Besides `text`, which only returns the IP itself, the available formarts are `xml`, `yaml` and `json`.
+
 Example:
 
 ```lua
 local query_ip  = require "ipapi".query_ip
-local get_own_ip = require "ipapi".get_own_ip
 
-print(get_own_ip().ip)
 local ip_info = query_ip("1.1.1.1")
-local several_ips = query_ip({"1.1.1.1","2.2.2.2"})
 
 if ip_info.location.country_code == "AU" then
     set_language("en_AU")
 end
 ```
 
-Run `test.lua` to view a detailed output.
+Run `test.lua` to view many more examples and a detailed output.
+
