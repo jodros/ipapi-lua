@@ -3,33 +3,16 @@ local cjson = require "cjson"
 
 local api = "https://api.ipquery.io/"
 
-local not_string = function(ip)
-  print ("Error: " .. tostring(ip) .. " is not an IP adress...")
-  return false 
-end
-
-local run_over_ip_list = function(list)
-  local str = ""
-  for _, ip in ipairs(list) do
-    if type(ip) == "string" then
-      str = str .. ip .. ","
-    else
-      return not_string(ip)
-    end
-  end
-  return str
-end
-
 local query_ip = function(ip)
   ip = ip or ""
 
   if type(ip) == "table" then
-    ip = run_over_ip_list(ip)
-    if not ip then return false end -- ensure it is not going to run when the input isn't a string!
+    ip = table.concat(ip, ", ")
   elseif type(ip) ~= "string" then 
-    return not_string(ip)
+    print ("Error: " .. tostring(ip) .. " is not an IP adress...")
+    return false 
   end
-  
+    
   local ip_info, http_code, _, status = request(api..ip)
 
   if http_code == 200 then
@@ -52,3 +35,4 @@ return {
   query_ip = query_ip,
   get_own_ip = get_own_ip
 }
+
